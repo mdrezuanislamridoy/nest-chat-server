@@ -7,7 +7,7 @@ model Participant{
     id String @id @default(cuid())
     userId String
     conversationId String
-    role ParticipantRole
+    role ParticipantRole?
 
     sender User @relation(fields: [userId],references: [id]) 
     conversation Conversation @relation(fields: [conversationId],references: [id])

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Conversation" ALTER COLUMN "senderId" SET NOT NULL,
+ALTER COLUMN "senderId" SET DATA TYPE TEXT;

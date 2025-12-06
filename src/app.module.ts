@@ -5,10 +5,24 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ConversatonModule } from './conversaton/conversaton.module';
 import { MessageModule } from './message/message.module';
+import { ConfigModule } from '@nestjs/config';
+import { PrismaService } from './lib/prisma/prisma.service';
+import { PrismaModule } from './lib/prisma/prisma.module';
+import { ChatGateway } from './message/message.gataway';
+import { MessageService } from './message/message.service';
 
 @Module({
-  imports: [UserModule, AuthModule, ConversatonModule, MessageModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    UserModule,
+    AuthModule,
+    ConversatonModule,
+    MessageModule,
+    PrismaModule,
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, MessageService, ChatGateway],
 })
 export class AppModule {}

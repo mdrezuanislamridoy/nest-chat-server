@@ -4,7 +4,6 @@ model Conversation{
     conversationType ConversationType
     name        String?
 
-    senderId String[]
     participents Participant[]
     messages Message[]
 }
