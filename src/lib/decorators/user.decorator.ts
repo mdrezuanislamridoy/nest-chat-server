@@ -11,10 +11,9 @@ export const CurrentUser = createParamDecorator(
 
     const user = req.user;
 
-    if (user) {
-      return user;
+    if (!user) {
+      throw new HttpException('user not found ', HttpStatus.BAD_REQUEST);
     }
-
-    throw new HttpException('user not found ', HttpStatus.BAD_REQUEST);
+    return user;
   },
 );

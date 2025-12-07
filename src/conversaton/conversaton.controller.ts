@@ -20,8 +20,25 @@ export class ConversatonController {
     @Param('id') id: string,
     @CurrentUser() user: { sub: string; email: string },
   ) {
+    console.log(user);
+
     return this.conversatonService.getConversation(id, user.sub);
   }
 
-  
+  @Post('create-group')
+  @UseGuards(JwtAuthGuard)
+  async createGroupConversation(
+    @Body()
+    body: {
+      name: string;
+      groupMenmbers: string[];
+    },
+    @CurrentUser() user: { sub: string; email: string },
+  ) {
+    return this.conversatonService.createGroupCoversation(
+      body.name,
+      user.sub,
+      body.groupMenmbers,
+    );
+  }
 }
